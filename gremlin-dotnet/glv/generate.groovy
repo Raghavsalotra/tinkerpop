@@ -342,6 +342,10 @@ def pTemplate = engine.createTemplate(new File("${projectBaseDir}/glv/P.template
 def pFile = new File("${projectBaseDir}/src/Gremlin.Net/Process/Traversal/P.cs")
 pFile.newWriter().withWriter{ it << pTemplate }
 
+def tpTemplate = engine.createTemplate(new File("${projectBaseDir}/glv/TP.template")).make(binding)
+def tpFile = new File("${projectBaseDir}/src/Gremlin.Net/Process/Traversal/TP.cs")
+tpFile.newWriter().withWriter{ it << tpTemplate }
+
 binding.tokens.each {k,v ->
     def tokenTemplate = engine.createTemplate(new File("${projectBaseDir}/glv/Token.template")).make([tokenFields: v, tokenName: k])
     def tokenFile = new File("${projectBaseDir}/src/Gremlin.Net/Process/Traversal/${k}.cs")
